@@ -32,7 +32,7 @@ public static class IdentityBuilderUIExtensions
         builder.Services.ConfigureOptions(
             typeof(IdentityDefaultUIConfigureOptions<>)
                 .MakeGenericType(builder.UserType));
-        builder.Services.TryAddTransient<IEmailSender, EmailSender>();
+        builder.Services.TryAddScoped<IEmailSender, EmailSender>();
 
         return builder;
     }

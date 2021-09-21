@@ -15,24 +15,29 @@ namespace sabatex.AspNetCore.Identity.UI.Services;
 // This class is used by the application to send email for account confirmation and password reset.
 // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
 public class EmailSender : IEmailSender
+{
+    public IConfiguration Configuration { get; }
+
+    public EmailSender(IConfiguration configuration)
     {
-        public IConfiguration Configuration { get; }
+        Configuration = configuration;
+    }
 
-        public EmailSender(IConfiguration configuration)
+    public async Task<string> SendEmailAsync(string email, string subject, string message)
+    {
+        var mailServer = Configuration.GetSection("MailServer");
+        if (mailServer == null) return "Section <MailServer> is not configured.";
+        try
         {
-            Configuration = configuration;
-        }
-
-        public async Task SendEmailAsync(string email, string subject, string message)
-        {
-            var MailServer = Configuration.GetSection("MailServer");
-            var pass = MailServer.GetValue<string>("Pass");
-            var login = MailServer.GetValue<string>("MailAdress");
+            var pass = mailServer.GetValue<string>("Pass");
+            var login = mailServer.GetValue<string>("MailAdress");
+            var host = mailServer.GetValue<string>("SMTPHost");
+            var port = mailServer.GetValue<string>("SMTPPort");
 
             var smtpClient = new SmtpClient()
             {
-                Host = "smtp.gmail.com", // set your SMTP server name here
-                Port = 587, // Port 
+                Host = host, // set your SMTP server name here
+                Port = int.Parse(port), // Port 
                 EnableSsl = true,
                 Credentials = new NetworkCredential(login, pass)
             };
@@ -41,15 +46,23 @@ public class EmailSender : IEmailSender
                 mail.IsBodyHtml = true;
                 await smtpClient.SendMailAsync(mail);
             }
+            return string.Empty;
 
-         }
-        public async Task SendConfirmEmailAsync(string email, string callbackUrl)
+        }
+        catch (Exception ex)
         {
-            await SendEmailAsync(email,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            return ex.Message;
         }
 
- 
+
     }
+    public async Task<string> SendConfirmEmailAsync(string email, string callbackUrl)
+    {
+        return await SendEmailAsync(email,
+                "Confirm your email",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+    }
+
+
+}
 
