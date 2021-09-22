@@ -5,7 +5,7 @@ on:
     branches: 
       - master
     paths:
-      - 'sabatex.AspNetCore.Identity.UI.csproj'
+      - 'sabatex.AspNetCore.Identity.UI/sabatex.AspNetCore.Identity.UI.csproj'
 
 jobs:
   publish:
@@ -31,7 +31,7 @@ jobs:
         uses: rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: 'sabatex.AspNetCore.Identity.UI.csproj'
+          PROJECT_FILE_PATH: 'sabatex.AspNetCore.Identity.UI/sabatex.AspNetCore.Identity.UI.csproj'
           # API key to authenticate with NuGet server
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
