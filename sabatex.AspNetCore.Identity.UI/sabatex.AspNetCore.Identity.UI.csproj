@@ -10,7 +10,6 @@
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageId>sabatex.AspNetCore.Identity.UI</PackageId>
 	<Version>6.0.0-rc1.1</Version>
-	  
 	<RepositoryUrl>https://github.com/sabatex/sabatex.AspNetCore.Identity.UI.git</RepositoryUrl>
 	<RepositoryType>GIT</RepositoryType>
 
