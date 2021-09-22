@@ -9,7 +9,7 @@
 	<Copyright>2020, Serhiy Lakas</Copyright>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageId>sabatex.AspNetCore.Identity.UI</PackageId>
-	<Version>6.0.0-rc1.1</Version>
+	<Version>6.0.0-rc1.2</Version>
 	<RepositoryUrl>https://github.com/sabatex/sabatex.AspNetCore.Identity.UI.git</RepositoryUrl>
 	<RepositoryType>GIT</RepositoryType>
   </PropertyGroup>
