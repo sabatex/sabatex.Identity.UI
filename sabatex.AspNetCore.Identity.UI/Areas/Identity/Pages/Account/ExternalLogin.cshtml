@@ -1,7 +1,8 @@
 ﻿@page
 @model ExternalLoginModel
 @{
-    ViewData["Title"] = @Localizer["Register"];
+    var Localizer = LocalizerFactory.Create(SharedResource.ResourceType);
+    ViewData["Title"] = Localizer["Register"];
 }
 
 <h1>@ViewData["Title"]</h1>

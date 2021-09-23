@@ -22,7 +22,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal;
 ///     directly from your code. This API may change or be removed in future releases.
 /// </summary>
 [AllowAnonymous]
-[IdentityDefaultUI(typeof(LoginModel<,>))]
+[IdentityDefaultUI(typeof(LoginModel<>))]
 public abstract class LoginModel : PageModel
 {
     /// <summary>
@@ -96,17 +96,17 @@ public abstract class LoginModel : PageModel
     public virtual Task<IActionResult> OnPostAsync(string returnUrl = null) => throw new NotImplementedException();
 }
 
-internal class LoginModel<TUser, TSharedResource> : LoginModel where TUser : class
+internal class LoginModel<TUser> : LoginModel where TUser : class
 {
     private readonly SignInManager<TUser> _signInManager;
     private readonly ILogger<LoginModel> _logger;
-    private readonly IStringLocalizer<TSharedResource> _localizer;
+    private readonly IStringLocalizer _localizer;
 
-    public LoginModel(SignInManager<TUser> signInManager, ILogger<LoginModel> logger, IStringLocalizer<TSharedResource> localizer)
+    public LoginModel(SignInManager<TUser> signInManager, ILogger<LoginModel> logger, IStringLocalizerFactory localizerFactory)
     {
         _signInManager = signInManager;
         _logger = logger;
-        _localizer = localizer;
+        _localizer = localizerFactory.Create(SharedResource.ResourceType);
     }
 
     public override async Task OnGetAsync(string returnUrl = null)

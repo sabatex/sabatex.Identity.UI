@@ -1,7 +1,8 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = @Localizer["Confirm email"];
+    var Localizer = LocalizerFactory.Create(SharedResource.ResourceType);
+    ViewData["Title"] = Localizer["Confirm email"];
 }
 
 <h1>@ViewData["Title"]</h1>

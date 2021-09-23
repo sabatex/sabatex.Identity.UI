@@ -1,6 +1,7 @@
 ﻿@page
 @model AccessDeniedModel
 @{
+     var Localizer = LocalizerFactory.Create(SharedResource.ResourceType);
     ViewData["Title"] = @Localizer["Access denied"];
 }
 
