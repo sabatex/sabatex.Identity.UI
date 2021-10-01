@@ -70,7 +70,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
         private readonly SignInManager<TUser> _signInManager;
         private readonly UserManager<TUser> _userManager;
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public LoginWithRecoveryCodeModel(
             SignInManager<TUser> signInManager,

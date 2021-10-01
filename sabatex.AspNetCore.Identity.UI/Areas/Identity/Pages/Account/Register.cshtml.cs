@@ -106,7 +106,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
         private readonly IUserEmailStore<TUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public RegisterModel(
             UserManager<TUser> userManager,

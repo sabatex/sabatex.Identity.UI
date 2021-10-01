@@ -87,7 +87,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
         private readonly UserManager<TUser> _userManager;
         private readonly SignInManager<TUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public ChangePasswordModel(
             UserManager<TUser> userManager,

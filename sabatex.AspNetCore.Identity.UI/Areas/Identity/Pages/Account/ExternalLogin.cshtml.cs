@@ -104,14 +104,15 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
         private readonly IUserEmailStore<TUser> _emailStore;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public ExternalLoginModel(
             SignInManager<TUser> signInManager,
             UserManager<TUser> userManager,
             IUserStore<TUser> userStore,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IStringLocalizerFactory localizerFactory)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -119,6 +120,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
             _emailStore = GetEmailStore();
             _logger = logger;
             _emailSender = emailSender;
+            _localizer = localizerFactory.Create(SharedResource.ResourceType);
         }
 
         public override IActionResult OnGet() => RedirectToPage("./Login");
@@ -136,13 +138,13 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
             returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
+                ErrorMessage = _localizer["Error from external provider: {0}", remoteError];
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information.";
+                ErrorMessage = _localizer["Error loading external login information."];
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -150,7 +152,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                _logger.LogInformation(LoggerEventIds.UserLoggedInByExternalProvider, "User logged in with {LoginProvider} provider.", info.LoginProvider);
+                _logger.LogInformation(LoggerEventIds.UserLoggedInByExternalProvider, _localizer["User logged in with {LoginProvider} provider."], info.LoginProvider);
                 return LocalRedirect(returnUrl);
             }
             if (result.IsLockedOut)
@@ -180,7 +182,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information during confirmation.";
+                ErrorMessage = _localizer["Error loading external login information during confirmation."];
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -197,7 +199,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
-                        _logger.LogInformation(LoggerEventIds.UserCreatedByExternalProvider ,"User created an account using {Name} provider.", info.LoginProvider);
+                        _logger.LogInformation(LoggerEventIds.UserCreatedByExternalProvider ,_localizer["User created an account using {0} provider.", Input.Email], info.LoginProvider);
 
                         var userId = await _userManager.GetUserIdAsync(user);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -208,8 +210,8 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
                             values: new { area = "Identity", userId = userId, code = code },
                             protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        await _emailSender.SendEmailAsync(Input.Email, _localizer["Confirm your email"],
+                            _localizer["Please confirm your account by <a href='{0}'>clicking here</a>.", HtmlEncoder.Default.Encode(callbackUrl)]);
 
                         // If account confirmation is required, we need to show the link if we don't have a real email sender
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)

@@ -69,7 +69,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
         private readonly UserManager<TUser> _userManager;
         private readonly SignInManager<TUser> _signInManager;
         private readonly ILogger<TwoFactorAuthenticationModel> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public TwoFactorAuthenticationModel(
             UserManager<TUser> userManager, SignInManager<TUser> signInManager, ILogger<TwoFactorAuthenticationModel> logger)

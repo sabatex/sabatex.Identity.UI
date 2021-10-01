@@ -43,7 +43,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
     {
         private readonly UserManager<TUser> _userManager;
         private readonly ILogger<Disable2faModel> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public Disable2faModel(
             UserManager<TUser> userManager,

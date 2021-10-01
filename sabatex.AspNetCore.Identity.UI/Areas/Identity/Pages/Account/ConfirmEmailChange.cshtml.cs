@@ -40,15 +40,15 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
     {
         private readonly UserManager<TUser> _userManager;
         private readonly SignInManager<TUser> _signInManager;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public ConfirmEmailChangeModel(UserManager<TUser> userManager,
                                        SignInManager<TUser> signInManager,
-                                       IStringLocalizer<SharedResource> localizer)
+                                       IStringLocalizerFactory localizerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _localizer = localizer;
+            _localizer = localizerFactory.Create(SharedResource.ResourceType);
         }
 
         public override async Task<IActionResult> OnGetAsync(string userId, string email, string code)

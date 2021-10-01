@@ -59,7 +59,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
     {
         private readonly UserManager<TUser> _userManager;
         private readonly IEmailSender _emailSender;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public ForgotPasswordModel(UserManager<TUser> userManager, IEmailSender emailSender)
         {

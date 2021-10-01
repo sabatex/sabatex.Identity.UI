@@ -77,7 +77,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
         private readonly UserManager<TUser> _userManager;
         private readonly SignInManager<TUser> _signInManager;
         private readonly IUserStore<TUser> _userStore;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public ExternalLoginsModel(
             UserManager<TUser> userManager,

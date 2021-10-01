@@ -90,7 +90,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
         private readonly UserManager<TUser> _userManager;
         private readonly SignInManager<TUser> _signInManager;
         private readonly IEmailSender _emailSender;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public EmailModel(
             UserManager<TUser> userManager,

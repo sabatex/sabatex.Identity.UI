@@ -40,7 +40,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Manage.Internal
     {
         private readonly UserManager<TUser> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public DownloadPersonalDataModel(
             UserManager<TUser> userManager,

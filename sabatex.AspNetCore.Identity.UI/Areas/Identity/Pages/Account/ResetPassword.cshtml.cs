@@ -87,7 +87,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
     internal class ResetPasswordModel<TUser> : ResetPasswordModel where TUser : class
     {
         private readonly UserManager<TUser> _userManager;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public ResetPasswordModel(UserManager<TUser> userManager)
         {

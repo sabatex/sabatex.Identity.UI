@@ -53,7 +53,7 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
     {
         private readonly UserManager<TUser> _userManager;
         private readonly IEmailSender _sender;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
         public RegisterConfirmationModel(UserManager<TUser> userManager, IEmailSender sender)
         {

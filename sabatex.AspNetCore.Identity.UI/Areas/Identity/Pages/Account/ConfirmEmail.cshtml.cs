@@ -40,12 +40,12 @@ namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal
     internal class ConfirmEmailModel<TUser> : ConfirmEmailModel where TUser : class
     {
         private readonly UserManager<TUser> _userManager;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer _localizer;
 
-        public ConfirmEmailModel(UserManager<TUser> userManager, IStringLocalizer<SharedResource> localizer)
+        public ConfirmEmailModel(UserManager<TUser> userManager, IStringLocalizerFactory localizerFactory)
         {
             _userManager = userManager;
-            _localizer = localizer;
+            _localizer = localizerFactory.Create(SharedResource.ResourceType);
         }
 
         public override async Task<IActionResult> OnGetAsync(string userId, string code)
