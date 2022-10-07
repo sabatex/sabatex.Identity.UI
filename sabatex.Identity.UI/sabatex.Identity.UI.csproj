@@ -8,16 +8,17 @@
   </PropertyGroup>
  
   <PropertyGroup>
-	<NeutralLanguage>en-US</NeutralLanguage>
+	  <NeutralLanguage>en-US</NeutralLanguage>
 	  <Authors>Serhiy Lakas</Authors>
 	  <Copyright>2022, Serhiy Lakas</Copyright>
 	  <Product>identity UI Localizable</Product>
 	  <Description>identity UI Localizable (uk-UA)</Description>
 	  <Company>sabatex on git</Company>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <PackageId>sabatex.Identity.UI</PackageId>
+	  <RepositoryUrl>https://github.com/sabatex/sabatex.Identity.UI</RepositoryUrl>
+    <PackageId>sabatex.Identity.UI</PackageId>
 	  <PackageTags>#ASP.NET #Blazor #Razor</PackageTags>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 		
 	</PropertyGroup>
   <ItemGroup>
