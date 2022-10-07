@@ -5,34 +5,20 @@ on:
     branches: 
       - master
     paths:
-      - 'sabatex.AspNetCore.Identity.UI/sabatex.AspNetCore.Identity.UI.csproj'
+      - 'sabatex.Identity.UI/sabatex.AspNetCore.UI.csproj'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
-           dotnet-version: 6.0.100-rc.1.21463.6
-     
-      #- name: Install dependencies
-      #  run: dotnet restore
-      #- name: Build
-      #  run: dotnet build --configuration Release --no-restore
-      #- name: Test
-      #  run: dotnet test --no-restore --verbosity normal
-
-      # Publish
-      - name: publish on version change
-        id: publish_nuget
-        uses: rohith/publish-nuget@v2
-        with:
-          # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: 'sabatex.AspNetCore.Identity.UI/sabatex.AspNetCore.Identity.UI.csproj'
+           dotnet-version: 6.0.x
+      - name: publish to nuget.org
+        run: dotnet nuget push */bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        env:
           # API key to authenticate with NuGet server
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-          # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          #INCLUDE_SYMBOLS: true
