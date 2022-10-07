@@ -22,6 +22,8 @@ jobs:
         run: dotnet build sabatex.Identity.UI/sabatex.Identity.UI.csproj
       - name: Create the package
         run: dotnet pack --configuration Release sabatex.Identity.UI/sabatex.Identity.UI.csproj
+      - name: Publish the package to GPR
+        run: dotnet nuget push sabatex.Identity.UI/bin/Release/*.nupkg
       - name: Publish the package to nuget.org
         run: dotnet nuget push sabatex.Identity.UI/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
         env:
