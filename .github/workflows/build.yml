@@ -15,6 +15,9 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
            dotnet-version: 6.0.x
+           source-url: https://nuget.pkg.github.com/sabatex/index.json
+        env:
+            NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: build
         run: dotnet build sabatex.Identity.UI/sabatex.Identity.UI.csproj
       - name: Create the package
