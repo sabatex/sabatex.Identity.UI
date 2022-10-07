@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
-
+ 
   <PropertyGroup>
 	<NeutralLanguage>en-US</NeutralLanguage>
 	  <Authors>Serhiy Lakas</Authors>
