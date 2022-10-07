@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sabatex.AspNetCore.Identity.UI.Services
+namespace sabatex.Identity.UI;
+
+public class IdentitySharedResource
 {
-    public class ISharedResource
-    {
-    }
 }
+

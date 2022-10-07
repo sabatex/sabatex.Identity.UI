@@ -4,14 +4,13 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace sabatex.AspNetCore.Identity.UI;
+namespace sabatex.Identity.UI;
 
-
-internal class IdentityPageModelConvention<TUser> : IPageApplicationModelConvention where TUser : class
+public sealed class IdentityPageModelConvention<TUser> : IPageApplicationModelConvention where TUser : class
 {
     public void Apply(PageApplicationModel model)
     {
-        var defaultUIAttribute = model.ModelType.GetCustomAttribute<IdentityDefaultUIAttribute>();
+        var defaultUIAttribute = model.ModelType?.GetCustomAttribute<IdentityDefaultUIAttribute>();
         if (defaultUIAttribute == null)
         {
             return;
@@ -22,7 +21,7 @@ internal class IdentityPageModelConvention<TUser> : IPageApplicationModelConvent
         model.ModelType = templateInstance.GetTypeInfo();
     }
 
-    private void ValidateTemplate(Type template)
+    private static void ValidateTemplate(Type template)
     {
         if (template.IsAbstract || !template.IsGenericTypeDefinition)
         {
@@ -35,4 +34,3 @@ internal class IdentityPageModelConvention<TUser> : IPageApplicationModelConvent
         }
     }
 }
-

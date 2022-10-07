@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
 
-namespace sabatex.AspNetCore.Identity.UI.Services;
+namespace sabatex.Identity.UI.Services;
 
+/// <summary>
+///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+///     directly from your code. This API may change or be removed in future releases.
+/// </summary>
 public interface IEmailSender
 {
     /// <summary>
-    /// Send email async
+    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+    ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
-    /// <param name="email">email adderess</param>
-    /// <param name="subject"></param>
-    /// <param name="message"></param>
-    /// <returns>emptyString if success or error message </returns>
-    Task<string> SendEmailAsync(string email, string subject, string message);
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="email"></param>
-    /// <param name="callbackUrl"></param>
-    /// <returns>emptyString if success or error message </returns>
-    Task<string> SendConfirmEmailAsync(string email, string callbackUrl);
+    Task SendEmailAsync(string email, string subject, string htmlMessage);
 }
-

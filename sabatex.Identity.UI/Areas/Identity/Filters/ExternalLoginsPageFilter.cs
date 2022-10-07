@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace sabatex.AspNetCore.Identity.UI.Areas.Identity.Filters;
+namespace sabatex.Identity.UI.Areas.Identity.Filters;
 
-internal class ExternalLoginsPageFilter<TUser> : IAsyncPageFilter where TUser : class
+public sealed class ExternalLoginsPageFilter<TUser> : IAsyncPageFilter where TUser : class
 {
     public async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, PageHandlerExecutionDelegate next)
     {
@@ -29,4 +29,3 @@ internal class ExternalLoginsPageFilter<TUser> : IAsyncPageFilter where TUser : 
         return Task.CompletedTask;
     }
 }
-

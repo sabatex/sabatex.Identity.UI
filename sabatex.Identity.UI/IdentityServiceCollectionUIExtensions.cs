@@ -1,16 +1,7 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using sabatex.AspNetCore.Identity.UI.Areas.Identity.Pages;
-using sabatex.AspNetCore.Identity.UI.Services;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -46,14 +37,7 @@ public static class IdentityServiceCollectionUIExtensions
     /// <param name="configureOptions">Configures the <see cref="IdentityOptions"/>.</param>
     /// <returns>The <see cref="IdentityBuilder"/>.</returns>
     public static IdentityBuilder AddDefaultIdentity<TUser>(this IServiceCollection services, Action<IdentityOptions> configureOptions) where TUser : class
-        => AddDefaultIdentity<TUser, SharedResource>(services, configureOptions);
-
-    public static IdentityBuilder AddDefaultIdentity<TUser, TSharedResource>(this IServiceCollection services, Action<IdentityOptions> configureOptions)
-                            where TUser: class
-                            where TSharedResource : class
     {
-        SharedResource.ResourceType = typeof(TSharedResource);
-        
         services.AddAuthentication(o =>
         {
             o.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -69,8 +53,4 @@ public static class IdentityServiceCollectionUIExtensions
             .AddDefaultUI()
             .AddDefaultTokenProviders();
     }
-
-
-
 }
-

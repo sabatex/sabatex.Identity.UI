@@ -117,20 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Access denied" xml:space="preserve">
-    <value>Access denied</value>
-  </data>
   <data name="Confirm email" xml:space="preserve">
-    <value>Confirm email</value>
+    <value>Підтвердити електронну пошту</value>
   </data>
-  <data name="Confirm email change" xml:space="preserve">
-    <value>Confirm email change</value>
-  </data>
-  <data name="Confirm password" xml:space="preserve">
+  <data name="Confirm Password" xml:space="preserve">
     <value>Повторити  пароль</value>
-  </data>
-  <data name="Confirm your email" xml:space="preserve">
-    <value>Confirm your email</value>
   </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Повторити новий пароль</value>
@@ -142,43 +133,16 @@
     <value>Поточний пароль</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Електронна адреса</value>
+    <value>Електронна пошта</value>
   </data>
   <data name="Email Verification" xml:space="preserve">
     <value>Email Verification</value>
   </data>
-  <data name="Enter your email." xml:space="preserve">
-    <value>Enter your email.</value>
-  </data>
-  <data name="Error changing email." xml:space="preserve">
-    <value>Error changing email.</value>
-  </data>
-  <data name="Error changing user name." xml:space="preserve">
-    <value>Error changing user name.</value>
-  </data>
   <data name="Error confirming email for user with ID '{0}':" xml:space="preserve">
     <value>Error confirming email for user with ID '{0}':</value>
   </data>
-  <data name="Error confirming your email." xml:space="preserve">
-    <value>Error confirming your email.</value>
-  </data>
-  <data name="Error from external provider: {0}" xml:space="preserve">
-    <value>Error from external provider: {0}</value>
-  </data>
-  <data name="Error loading external login information during confirmation." xml:space="preserve">
-    <value>Error loading external login information during confirmation.</value>
-  </data>
-  <data name="Error loading external login information." xml:space="preserve">
-    <value>Error loading external login information.</value>
-  </data>
-  <data name="Forgot password confirmation" xml:space="preserve">
-    <value>Forgot password confirmation</value>
-  </data>
   <data name="Forgot your password?" xml:space="preserve">
     <value>Забули пароль?</value>
-  </data>
-  <data name="ForgotYourPassword" xml:space="preserve">
-    <value>Запам'ятати пароль?</value>
   </data>
   <data name="Invalid login attempt." xml:space="preserve">
     <value>Неприпустима спроба входу.</value>
@@ -198,15 +162,6 @@
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
-  <data name="Please check your email to reset your password." xml:space="preserve">
-    <value>Please check your email to reset your password.</value>
-  </data>
-  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
-    <value>Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;.</value>
-  </data>
-  <data name="Recovery code verification" xml:space="preserve">
-    <value>Recovery code verification</value>
-  </data>
   <data name="Register" xml:space="preserve">
     <value>Зареєструватися</value>
   </data>
@@ -220,16 +175,10 @@
     <value>Запам'ятати пароль?</value>
   </data>
   <data name="Resend email confirmation" xml:space="preserve">
-    <value>Resend email confirmation</value>
-  </data>
-  <data name="Reset Password" xml:space="preserve">
-    <value>Скинути пароль</value>
+    <value>Вислати знову лист підтвердження</value>
   </data>
   <data name="Send email again" xml:space="preserve">
     <value>Send email again</value>
-  </data>
-  <data name="Thank you for confirming your email change." xml:space="preserve">
-    <value>Thank you for confirming your email change.</value>
   </data>
   <data name="Thank you for confirming your email." xml:space="preserve">
     <value>Thank you for confirming your email.</value>
@@ -249,9 +198,6 @@
   <data name="The {0} must be at least {2} and at max {1} characters long." xml:space="preserve">
     <value>Значення  {0} має містити мінімум {2} та максимум  {1} символів.</value>
   </data>
-  <data name="This account has been locked out, please try again later." xml:space="preserve">
-    <value>This account has been locked out, please try again later.</value>
-  </data>
   <data name="Unable to load user with ID '{0}'." xml:space="preserve">
     <value>Unable to load user with ID '{0}'.</value>
   </data>
@@ -264,8 +210,11 @@
   <data name="UpdatePassword" xml:space="preserve">
     <value>Змінити пароль</value>
   </data>
+  <data name="Use a local account to log in." xml:space="preserve">
+    <value>Використати локальний обліковий запис.</value>
+  </data>
   <data name="Use another service to log in." xml:space="preserve">
-    <value>Use another service to log in.</value>
+    <value>Використовувати інший сервіс для входу.</value>
   </data>
   <data name="UseLocalAccountToLogIn" xml:space="preserve">
     <value>Використовувати локальний обліковий запис для входу.</value>
@@ -273,22 +222,7 @@
   <data name="User account locked out." xml:space="preserve">
     <value>User account locked out.</value>
   </data>
-  <data name="User created an account using {0} provider." xml:space="preserve">
-    <value>User created an account using {0} provider.</value>
-  </data>
-  <data name="User logged in with {LoginProvider} provider." xml:space="preserve">
-    <value>User logged in with {LoginProvider} provider.</value>
-  </data>
   <data name="User logged in." xml:space="preserve">
     <value>User logged in.</value>
-  </data>
-  <data name="You do not have access to this resource." xml:space="preserve">
-    <value>You do not have access to this resource.</value>
-  </data>
-  <data name="You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
-    <value>You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again.</value>
-  </data>
-  <data name="You have successfully logged out of the application." xml:space="preserve">
-    <value>You have successfully logged out of the application.</value>
   </data>
 </root>

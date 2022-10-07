@@ -1,21 +1,16 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using sabatex.AspNetCore.Identity.UI.Areas.Identity.Pages;
 
-namespace sabatex.AspNetCore.Identity.UI.Pages.Account.Internal;
+namespace sabatex.Identity.UI.Pages.Account;
 
 /// <summary>
 ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -30,26 +25,26 @@ public abstract class LoginModel : PageModel
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
     [BindProperty]
-    public InputModel Input { get; set; }
+    public InputModel Input { get; set; } = default!;
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
-    public IList<AuthenticationScheme> ExternalLogins { get; set; }
+    public IList<AuthenticationScheme>? ExternalLogins { get; set; }
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
-    public string ReturnUrl { get; set; }
+    public string? ReturnUrl { get; set; }
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
     [TempData]
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -63,8 +58,7 @@ public abstract class LoginModel : PageModel
         /// </summary>
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string Email { get; set; } = default!;
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -72,8 +66,7 @@ public abstract class LoginModel : PageModel
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        public string Password { get; set; } = default!;
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -87,29 +80,27 @@ public abstract class LoginModel : PageModel
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
-    public virtual Task OnGetAsync(string returnUrl = null) => throw new NotImplementedException();
+    public virtual Task OnGetAsync(string? returnUrl = null) => throw new NotImplementedException();
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
     ///     directly from your code. This API may change or be removed in future releases.
     /// </summary>
-    public virtual Task<IActionResult> OnPostAsync(string returnUrl = null) => throw new NotImplementedException();
+    public virtual Task<IActionResult> OnPostAsync(string? returnUrl = null) => throw new NotImplementedException();
 }
 
-internal class LoginModel<TUser> : LoginModel where TUser : class
+internal sealed class LoginModel<TUser> : LoginModel where TUser : class
 {
     private readonly SignInManager<TUser> _signInManager;
     private readonly ILogger<LoginModel> _logger;
-    private readonly IStringLocalizer _localizer;
 
-    public LoginModel(SignInManager<TUser> signInManager, ILogger<LoginModel> logger, IStringLocalizerFactory localizerFactory)
+    public LoginModel(SignInManager<TUser> signInManager, ILogger<LoginModel> logger)
     {
         _signInManager = signInManager;
         _logger = logger;
-        _localizer = localizerFactory.Create(SharedResource.ResourceType);
     }
 
-    public override async Task OnGetAsync(string returnUrl = null)
+    public override async Task OnGetAsync(string? returnUrl = null)
     {
         if (!string.IsNullOrEmpty(ErrorMessage))
         {
@@ -126,7 +117,7 @@ internal class LoginModel<TUser> : LoginModel where TUser : class
         ReturnUrl = returnUrl;
     }
 
-    public override async Task<IActionResult> OnPostAsync(string returnUrl = null)
+    public override async Task<IActionResult> OnPostAsync(string? returnUrl = null)
     {
         returnUrl ??= Url.Content("~/");
 
@@ -139,7 +130,7 @@ internal class LoginModel<TUser> : LoginModel where TUser : class
             var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                _logger.LogInformation(LoggerEventIds.UserLogin, _localizer["User logged in."]);
+                _logger.LogInformation(LoggerEventIds.UserLogin, "User logged in.");
                 return LocalRedirect(returnUrl);
             }
             if (result.RequiresTwoFactor)
@@ -148,12 +139,12 @@ internal class LoginModel<TUser> : LoginModel where TUser : class
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning(LoggerEventIds.UserLockout, _localizer["User account locked out."]);
+                _logger.LogWarning(LoggerEventIds.UserLockout, "User account locked out.");
                 return RedirectToPage("./Lockout");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, _localizer["Invalid login attempt."]);
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return Page();
             }
         }
@@ -162,4 +153,3 @@ internal class LoginModel<TUser> : LoginModel where TUser : class
         return Page();
     }
 }
-

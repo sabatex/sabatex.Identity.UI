@@ -3,7 +3,7 @@
 
 using Microsoft.Extensions.Logging;
 
-namespace sabatex.AspNetCore.Identity.UI;
+namespace sabatex.Identity.UI;
 
 /// <summary>
 /// Static class that exposes logging event ids.
@@ -95,4 +95,3 @@ public static class LoggerEventIds
     /// </summary>
     public static readonly EventId UserLoggedOut = new EventId(17, "UserLoggedOut");
 }
-
