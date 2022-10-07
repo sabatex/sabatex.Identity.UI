@@ -5,20 +5,19 @@ on:
     branches: 
       - master
     paths:
-      - 'sabatex.Identity.UI/sabatex.AspNetCore.UI.csproj'
+      - 'sabatex.Identity.UI/sabatex.Identity.UI.csproj'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v3
         with:
            dotnet-version: 6.0.x
-      - name: publish to nuget.org
-        run: dotnet nuget push */bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+           source-url: https://nuget.pkg.github.com/sabatex/index.json
         env:
           # API key to authenticate with NuGet server
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: build
+        run: dotnet build sabatex.Identity.UI/sabatex.Identity.UI.csproj
